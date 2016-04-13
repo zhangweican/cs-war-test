@@ -6,7 +6,7 @@
 <title></title>
 </head>
 <body>
-	List
+	Index
 	
 </body>
 </html>

@@ -3,10 +3,11 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title></title>
+<title>错误页面</title>
 </head>
 <body>
-	List
+	你没有权限访问该页面
+	<hr>
 	
 </body>
 </html>
