@@ -36,13 +36,14 @@
 		<!-- authc：该过滤器下的页面必须验证后才能访问,它是Shiro内置的一个拦截器org.apache.shiro.web.filter.authc.FormAuthenticationFilter -->
 		<property name="filterChainDefinitions">
 			<value>
-				/security/index = anon
-				/security/login = anon
-				/security/unauthorized = anon
-				/plugins/* = anon
-				/static/* = anon
+				/security/index = anon 
+				/security/login = anon 
+				/security/unauthorized = anon 
+				/plugins/** = anon 
+				/static/** = anon 
 				/security/logout = logout
-				/** = authc,sperm
+				/**/*.jsp = anon  
+				/** = authc,sperm 
 			</value>
 		</property>
 		<!-- 自定义过滤链 -->

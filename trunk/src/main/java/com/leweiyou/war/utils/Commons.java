@@ -5,6 +5,11 @@ public class Commons {
 	
 	public final static int MenuType_tree = 0;		//定义菜单类型为主菜单
 	public final static int MenuType_button = 1;	//定义菜单类型为按钮
+
+	/**
+	 * 定义jsp存放位置，和 springmvc 的 InternalResourceViewResolver 配置保持一致
+	 */
+	public static final String Path_JSP = "/jsp";
 	
 	
 }
