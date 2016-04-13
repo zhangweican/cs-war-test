@@ -37,7 +37,7 @@
 	<mvc:resources location="/static/img/" mapping="/img/**"/>
 	<mvc:resources location="/static/js/" mapping="/js/**"/>
 	<mvc:resources location="/static/css/" mapping="/css/**"/>
-	<mvc:resources location="/plugins" mapping="/plugins/**"/>
+	<mvc:resources location="/plugins/" mapping="/plugins/**"/>
 	
 	<!-- 视图分解器 -->
 	<bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">

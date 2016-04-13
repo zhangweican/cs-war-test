@@ -7,7 +7,6 @@ import java.util.Set;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.UsernamePasswordToken;
-import org.apache.shiro.session.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -117,7 +116,7 @@ public class SecurityController extends BaseController{
 		sessionUser.setTree(menus);
 		setSessionAttr(Commons.SessionAcount, sessionUser);
 		
-		return "sys/main";
+		return "/security/main";
 	}
 	
 	/**
@@ -135,7 +134,7 @@ public class SecurityController extends BaseController{
 	@RequestMapping("/unauthorized")
 	public String unauthorized(){
 		
-		return "common/403";
+		return "/common/403";
 	}
 	
 }
