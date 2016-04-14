@@ -43,6 +43,8 @@
 				/static/** = anon 
 				/security/logout = logout
 				/**/*.jsp = anon  
+				/**/*.html = anon  
+				/**/*.htm = anon  
 				/** = authc,sperm 
 			</value>
 		</property>
