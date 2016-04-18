@@ -8,6 +8,7 @@ import org.apache.shiro.SecurityUtils;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.support.RequestContext;
 
 import com.github.pagehelper.Page;
 import com.leweiyou.tools.PageData;
@@ -62,11 +63,25 @@ public abstract class BaseController {
 		return new Page();
 	}
 	
+	public void setAttr(String name,Object value){
+		getRequest().setAttribute(name, value);
+	} 
 	public void setSessionAttr(Object key,Object value){
 		//getRequest().setAttribute(key, value);
 		SecurityUtils.getSubject().getSession().setAttribute(key, value);
 	} 
 	public Object getSessionAttr(Object key){
 		return SecurityUtils.getSubject().getSession().getAttribute(key);
-	} 
+	}
+	
+	/**
+	 * 获取对应的I18N的值
+	 * @param key
+	 * @return
+	 */
+	public String i18n(String key){
+		RequestContext requestContext = new RequestContext(getRequest());
+		return requestContext.getMessage(key);
+	}
+	
 }

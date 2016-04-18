@@ -4,12 +4,14 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import org.apache.commons.lang.StringUtils;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.leweiyou.service.mybatis.entry.sys.SysMenu;
 import com.leweiyou.service.mybatis.entry.sys.SysRoleMenu;
@@ -27,6 +29,7 @@ import com.leweiyou.war.controller.BaseController;
 import com.leweiyou.war.form.SessionUser;
 import com.leweiyou.war.form.SysUserForm;
 import com.leweiyou.war.utils.Commons;
+import com.leweiyou.war.valid.Valid;
 
 @Controller
 @RequestMapping("/security")
@@ -47,6 +50,8 @@ public class SecurityController extends BaseController{
 	 * 用户登录
 	 */
 	@RequestMapping("/login")
+	@Valid(errorView="/index")
+	@ResponseBody
 	public String login(SysUserForm form){
 		try {
 			//使用权限工具进行用户登录，登录成功后跳到shiro配置的successUrl中，与下面的return没什么关系！
@@ -137,4 +142,11 @@ public class SecurityController extends BaseController{
 		return "/common/403";
 	}
 	
+	
+	public boolean validLogin(SysUserForm form){
+		if(StringUtils.isEmpty(form.getUsername())){
+			setAttr("error", i18n("name.is.empty"));
+		}
+		return false;
+	}
 }

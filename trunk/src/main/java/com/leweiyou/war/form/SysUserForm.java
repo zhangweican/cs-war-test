@@ -1,6 +1,10 @@
 package com.leweiyou.war.form;
 
+import org.hibernate.validator.constraints.NotEmpty;
+
 public class SysUserForm {
+	
+	@NotEmpty(message = "{name.is.empty}")
 	private String username;
 	private String password;
 	
