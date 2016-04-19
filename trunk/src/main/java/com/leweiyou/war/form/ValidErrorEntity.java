@@ -7,7 +7,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.TreeSet;
 
-import com.leweiyou.war.utils.I18N;
+import com.leweiyou.war.utils.Utils;
 
 /**
  * 存前台校验信息的实体
@@ -47,7 +47,7 @@ public class ValidErrorEntity {
 		if(sets == null){
 			sets = new TreeSet<String>();
 		}
-		sets.add(I18N.value(value,params));
+		sets.add(Utils.i18n(value,params));
 		map.put(key, sets);
 	}
 	/**
@@ -69,7 +69,7 @@ public class ValidErrorEntity {
 		if(sets == null){
 			sets = new HashSet<String>();
 		}
-		sets.add(I18N.value(value,params));
+		sets.add(Utils.i18n(value,params));
 		map.put(NOT_KEY, sets);
 	}
 	public boolean isHaveError() {

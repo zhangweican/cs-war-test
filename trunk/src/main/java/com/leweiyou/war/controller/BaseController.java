@@ -18,7 +18,7 @@ import com.leweiyou.tools.UuidUtil;
 import com.leweiyou.war.form.ValidErrorEntity;
 import com.leweiyou.war.utils.CXT;
 import com.leweiyou.war.utils.Commons;
-import com.leweiyou.war.utils.I18N;
+import com.leweiyou.war.utils.Utils;
 
 /**
  * 父类Controller，
@@ -99,7 +99,7 @@ public abstract class BaseController {
 	 * @return
 	 */
 	public String i18n(String key){
-		return I18N.value(key);
+		return Utils.i18n(key);
 	}
 	
 	/**

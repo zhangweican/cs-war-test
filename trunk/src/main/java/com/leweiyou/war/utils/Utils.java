@@ -3,27 +3,27 @@ package com.leweiyou.war.utils;
 import org.springframework.web.servlet.support.RequestContext;
 
 /**
- * 定义I18N对应的资源文件的Key
+ * 工具类了
  * @author Zhangweican
  *
  */
-public class I18N {
+public class Utils {
 	
 	/**
-	 * 获取Value值
+	 * 定义I18N对应的资源文件的Key  获取Value值
 	 * @param key
 	 * @return
 	 */
-	public static String value(String key){
+	public static String i18n(String key){
 		RequestContext requestContext = new RequestContext(CXT.getRequest());
 		return requestContext.getMessage(key);
 	}
 	/**
-	 * 获取Value值，可以实现EL表达式传值
+	 * 定义I18N对应的资源文件的Key  获取Value值，可以实现EL表达式传值
 	 * @param key
 	 * @return
 	 */
-	public static String value(String key,String... params){
+	public static String i18n(String key,String... params){
 		RequestContext requestContext = new RequestContext(CXT.getRequest());
 		if(params == null || params.length == 0 ){
 			return requestContext.getMessage(key);

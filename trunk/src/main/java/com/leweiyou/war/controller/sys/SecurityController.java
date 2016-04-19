@@ -59,8 +59,7 @@ public class SecurityController extends BaseController{
 	 * 用户登录
 	 */
 	@RequestMapping("/login")
-	@Valid(errorView="/index",validFunction="vLogin")
-	@ResponseBody
+	@Valid(errorView="/index")
 	public String login(SysUserForm form,String usern){
 		try {
 			//使用权限工具进行用户登录，登录成功后跳到shiro配置的successUrl中，与下面的return没什么关系！
