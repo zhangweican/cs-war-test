@@ -2,16 +2,22 @@ package com.leweiyou.war.controller.sys;
 
 import java.util.HashSet;
 import java.util.List;
+import java.util.Locale;
 import java.util.Set;
 
+import org.apache.commons.lang.LocaleUtils;
 import org.apache.commons.lang.StringUtils;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.LocaleResolver;
+import org.springframework.web.servlet.i18n.SessionLocaleResolver;
+import org.springframework.web.servlet.support.RequestContextUtils;
 
 import com.leweiyou.service.mybatis.entry.sys.SysMenu;
 import com.leweiyou.service.mybatis.entry.sys.SysRoleMenu;
@@ -35,6 +41,9 @@ import com.leweiyou.war.valid.Valid;
 @RequestMapping("/security")
 public class SecurityController extends BaseController{
 
+	@Autowired  
+    private LocaleResolver localeResolver;
+	
 	@Autowired
 	private SysUserService sysUserService;
 	@Autowired
@@ -50,7 +59,8 @@ public class SecurityController extends BaseController{
 	 * 用户登录
 	 */
 	@RequestMapping("/login")
-	@Valid(errorView="/index")
+	@Valid(errorView="/index",validFunction="vLogin")
+	@ResponseBody
 	public String login(SysUserForm form,String usern){
 		try {
 			//使用权限工具进行用户登录，登录成功后跳到shiro配置的successUrl中，与下面的return没什么关系！
@@ -141,11 +151,28 @@ public class SecurityController extends BaseController{
 		return "/common/403";
 	}
 	
-	
-	public boolean validLogin(SysUserForm form){
-		if(StringUtils.isEmpty(form.getUsername())){
-			setAttr("error", i18n("name.is.empty"));
+	/**
+	 * 
+	 * 改变国际化
+	 */
+	@RequestMapping("/changeLocal")
+	public String changeLocal(String locale){
+		if(StringUtils.isNotEmpty(locale)){
+			Locale l = new Locale(locale);  
+	        localeResolver.setLocale(getRequest(), getResponse(), l);
 		}
-		return false;
+		return "redirect:index";
+	}
+	
+	
+	public boolean vLogin(SysUserForm form){
+		if(StringUtils.isEmpty(form.getUsername())){
+			addValidError("name.is.empty");
+		}
+		if(StringUtils.isEmpty(form.getPassword())){
+			addValidError("password.is.empty");
+			return false;
+		}
+		return true;
 	}
 }

@@ -13,14 +13,14 @@ import org.springframework.core.io.support.ResourcePatternResolver;
  */
 public class MultipleMessageSource extends ReloadableResourceBundleMessageSource {
 	private static final String PROPERTIES_SUFFIX = ".properties";
-	private ResourcePatternResolver  resolver = new PathMatchingResourcePatternResolver();
+	private ResourcePatternResolver resolver = new PathMatchingResourcePatternResolver();
 
 	@Override
 	protected PropertiesHolder refreshProperties(String filename, PropertiesHolder propHolder) {
 		Properties properties = new Properties();
 		long lastModified = -1;
 		try {
-			Resource[] resources = resolver.getResources(filename + "*" +PROPERTIES_SUFFIX);
+			Resource[] resources = resolver.getResources(filename + "*" + PROPERTIES_SUFFIX);
 			for (Resource resource : resources) {
 				String sourcePath = resource.getURI().toString().replace(PROPERTIES_SUFFIX, "");
 				PropertiesHolder holder = super.refreshProperties(sourcePath, propHolder);

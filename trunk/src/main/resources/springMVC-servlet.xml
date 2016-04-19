@@ -16,9 +16,8 @@
     
     <!-- 注解扫描包 -->
    	<context:component-scan base-package="com.leweiyou.war.valid,com.leweiyou.war.controller"/>
-   
-   <aop:aspectj-autoproxy/>
-   
+   	<aop:aspectj-autoproxy/>
+	
    	<!-- 开启注解 -->
 	<bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter" >  
 	    <property name="messageConverters">  
@@ -36,7 +35,22 @@
 			</list>
 		</property>
 	</bean>
-
+    <!-- 定义responseBody返回中文出现乱码 -->
+	<!-- 启动Spring MVC的注解功能，完成请求和注解POJO的映射,解决@ResponseBody乱码问题, 需要在annotation-driven之前,否则乱码问题同样无法解决 -->
+	<bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter">
+		<property name="messageConverters">
+			<list>
+				<bean
+					class="org.springframework.http.converter.StringHttpMessageConverter">
+					<property name="supportedMediaTypes">
+						<list>
+							<value>text/html;charset=UTF-8</value>
+						</list>
+					</property>
+				</bean>
+			</list>
+		</property>
+	</bean>
 
 	<!-- 静态资源的访问 -->
 	<mvc:resources location="/static/img/" mapping="/img/**"/>
@@ -75,9 +89,6 @@
 	
 	
    	<!-- 定义校验 -->
-    <!-- 指定自己定义的validator -->
-    <mvc:annotation-driven validator="validator"/>
-
     <!-- 以下 validator  ConversionService 在使用 mvc:annotation-driven 会 自动注册-->
     <bean id="validator" class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean">
         <property name="providerClass" value="org.hibernate.validator.HibernateValidator"/>
@@ -98,4 +109,9 @@
         <property name="defaultEncoding" value="UTF-8"/>
         <property name="cacheSeconds" value="300"/>
     </bean>
+	<bean id="localeResolver" class="org.springframework.web.servlet.i18n.CookieLocaleResolver">  
+	    <property name="cookieName" value="language"/>  
+	    <property name="cookieMaxAge" value="3600"/>  
+	    <property name="defaultLocale" value="zh"/>  
+	</bean> 
 </beans>

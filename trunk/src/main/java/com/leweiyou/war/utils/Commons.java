@@ -10,6 +10,11 @@ public class Commons {
 	 * 定义jsp存放位置，和 springmvc 的 InternalResourceViewResolver 配置保持一致
 	 */
 	public static final String Path_JSP = "/jsp";
+
+	/**
+	 * 定义校验失败存入Request的map的兼职
+	 */
+	public static final String Key_Valid_Error_Map = "Valid_Error_Map";
 	
 	
 }

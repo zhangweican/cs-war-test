@@ -47,6 +47,7 @@
 			<value>
 				/security/index = anon 
 				/security/login = anon 
+				/security/changeLocal = anon 
 				/security/unauthorized = anon 
 				/plugins/** = anon 
 				/static/** = anon 

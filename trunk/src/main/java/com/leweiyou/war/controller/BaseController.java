@@ -1,18 +1,23 @@
 package com.leweiyou.war.controller;
 
 
+import java.util.HashSet;
+import java.util.Hashtable;
+import java.util.Map;
+import java.util.Set;
+
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.apache.log4j.Logger;
-import org.apache.shiro.SecurityUtils;
-import org.springframework.web.context.request.RequestContextHolder;
-import org.springframework.web.context.request.ServletRequestAttributes;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.support.RequestContext;
 
 import com.github.pagehelper.Page;
 import com.leweiyou.tools.PageData;
 import com.leweiyou.tools.UuidUtil;
+import com.leweiyou.war.utils.CTX;
+import com.leweiyou.war.utils.Commons;
+import com.leweiyou.war.utils.I18N;
 
 /**
  * 父类Controller，
@@ -42,9 +47,16 @@ public abstract class BaseController {
 	 * 得到request对象
 	 */
 	public HttpServletRequest getRequest() {
-		HttpServletRequest request = ((ServletRequestAttributes)RequestContextHolder.getRequestAttributes()).getRequest();
 		
-		return request;
+		return CTX.getRequest();
+	}
+	
+	/**
+	 * 得到request对象
+	 */
+	public HttpServletResponse getResponse() {
+		
+		return CTX.getResponse();
 	}
 
 	/**
@@ -66,12 +78,18 @@ public abstract class BaseController {
 	public void setAttr(String name,Object value){
 		getRequest().setAttribute(name, value);
 	} 
+	
+	/**
+	 * 存入Session
+	 * @param key
+	 * @param value
+	 */
 	public void setSessionAttr(Object key,Object value){
 		//getRequest().setAttribute(key, value);
-		SecurityUtils.getSubject().getSession().setAttribute(key, value);
+		CTX.getSession().setAttribute(key, value);
 	} 
 	public Object getSessionAttr(Object key){
-		return SecurityUtils.getSubject().getSession().getAttribute(key);
+		return CTX.getSession().getAttribute(key);
 	}
 	
 	/**
@@ -80,8 +98,45 @@ public abstract class BaseController {
 	 * @return
 	 */
 	public String i18n(String key){
-		RequestContext requestContext = new RequestContext(getRequest());
-		return requestContext.getMessage(key);
+		return I18N.value(key);
+	}
+	
+	/**
+	 * 存入失败的map中,可以存入一个标志KEY中，再前台可以只取这个标志
+	 * @param key
+	 * @param value
+	 */
+	public synchronized void addValidError(String key,String value){
+		Map<String,Set<String>> map = (Map<String, Set<String>>) getRequest().getAttribute(Commons.Key_Valid_Error_Map);
+		if(map == null){
+			map = new Hashtable<String, Set<String>>();
+		}
+		Set<String> sets = map.get(key);
+		if(sets == null){
+			sets = new HashSet<String>();
+		}
+		sets.add(I18N.value(value));
+		map.put(key, sets);
+		getRequest().setAttribute(Commons.Key_Valid_Error_Map, map);
+	}
+	/**
+	 * 存入一个错误的map中，可以在前台取值
+	 * @param key
+	 * @param value
+	 */
+	public synchronized void addValidError(String value){
+		String key = "-";
+		Map<String,Set<String>> map = (Map<String, Set<String>>) getRequest().getAttribute(Commons.Key_Valid_Error_Map);
+		if(map == null){
+			map = new Hashtable<String, Set<String>>();
+		}
+		Set<String> sets = map.get(key);
+		if(sets == null){
+			sets = new HashSet<String>();
+		}
+		sets.add(I18N.value(value));
+		map.put(key, sets);
+		getRequest().setAttribute(Commons.Key_Valid_Error_Map, map);
 	}
 	
 }
