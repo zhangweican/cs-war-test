@@ -51,8 +51,7 @@ public class SecurityController extends BaseController{
 	 */
 	@RequestMapping("/login")
 	@Valid(errorView="/index")
-	@ResponseBody
-	public String login(SysUserForm form){
+	public String login(SysUserForm form,String usern){
 		try {
 			//使用权限工具进行用户登录，登录成功后跳到shiro配置的successUrl中，与下面的return没什么关系！
 			SecurityUtils.getSubject().login(new UsernamePasswordToken(form.getUsername(), form.getPassword()));

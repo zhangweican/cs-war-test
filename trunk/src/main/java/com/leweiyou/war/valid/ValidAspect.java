@@ -1,6 +1,7 @@
 package com.leweiyou.war.valid;
 
 import java.lang.reflect.Method;
+import java.util.Arrays;
 
 import org.apache.commons.lang.StringUtils;
 import org.aspectj.lang.ProceedingJoinPoint;
@@ -51,7 +52,11 @@ public class ValidAspect {
 		Object isSuccess = true;
 		for(Method m : target.getClass().getDeclaredMethods()){
 			if(validFunction.equals(m.getName())){
-				isSuccess = m.invoke(target, args);
+				Object[] targetArgs = (args != null && args.length > 0) ? args : null;
+				if(args != null && args.length > m.getParameterTypes().length){
+					targetArgs = Arrays.copyOfRange(args, 0, m.getParameterTypes().length);
+				}else
+				isSuccess = m.invoke(target, targetArgs);
 			}
 		}
 		
