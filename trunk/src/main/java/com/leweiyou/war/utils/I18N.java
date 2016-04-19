@@ -15,7 +15,19 @@ public class I18N {
 	 * @return
 	 */
 	public static String value(String key){
-		RequestContext requestContext = new RequestContext(CTX.getRequest());
+		RequestContext requestContext = new RequestContext(CXT.getRequest());
 		return requestContext.getMessage(key);
+	}
+	/**
+	 * 获取Value值，可以实现EL表达式传值
+	 * @param key
+	 * @return
+	 */
+	public static String value(String key,String... params){
+		RequestContext requestContext = new RequestContext(CXT.getRequest());
+		if(params == null || params.length == 0 ){
+			return requestContext.getMessage(key);
+		}
+		return requestContext.getMessage(key, params);
 	}
 }

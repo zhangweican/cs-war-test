@@ -24,4 +24,10 @@ public @interface Valid {
 	 * @return
 	 */
 	String validFunction() default "";
+	
+	/**
+	 * 定义校验参数所在的标号，默认是0，<br>
+	 * 暂时没有实现对多个字段校验的情况
+	 */
+	int parameterPosition() default 0;
 }

@@ -15,7 +15,8 @@ import org.springframework.web.servlet.ModelAndView;
 import com.github.pagehelper.Page;
 import com.leweiyou.tools.PageData;
 import com.leweiyou.tools.UuidUtil;
-import com.leweiyou.war.utils.CTX;
+import com.leweiyou.war.form.ValidErrorEntity;
+import com.leweiyou.war.utils.CXT;
 import com.leweiyou.war.utils.Commons;
 import com.leweiyou.war.utils.I18N;
 
@@ -48,7 +49,7 @@ public abstract class BaseController {
 	 */
 	public HttpServletRequest getRequest() {
 		
-		return CTX.getRequest();
+		return CXT.getRequest();
 	}
 	
 	/**
@@ -56,7 +57,7 @@ public abstract class BaseController {
 	 */
 	public HttpServletResponse getResponse() {
 		
-		return CTX.getResponse();
+		return CXT.getResponse();
 	}
 
 	/**
@@ -86,10 +87,10 @@ public abstract class BaseController {
 	 */
 	public void setSessionAttr(Object key,Object value){
 		//getRequest().setAttribute(key, value);
-		CTX.getSession().setAttribute(key, value);
+		CXT.getSession().setAttribute(key, value);
 	} 
 	public Object getSessionAttr(Object key){
-		return CTX.getSession().getAttribute(key);
+		return CXT.getSession().getAttribute(key);
 	}
 	
 	/**
@@ -107,17 +108,16 @@ public abstract class BaseController {
 	 * @param value
 	 */
 	public synchronized void addValidError(String key,String value){
-		Map<String,Set<String>> map = (Map<String, Set<String>>) getRequest().getAttribute(Commons.Key_Valid_Error_Map);
-		if(map == null){
-			map = new Hashtable<String, Set<String>>();
-		}
-		Set<String> sets = map.get(key);
-		if(sets == null){
-			sets = new HashSet<String>();
-		}
-		sets.add(I18N.value(value));
-		map.put(key, sets);
-		getRequest().setAttribute(Commons.Key_Valid_Error_Map, map);
+		addValidError(key, value,new String[]{});
+	}
+	/**
+	 * 存入失败的map中,可以存入一个标志KEY中，再前台可以只取这个标志
+	 * @param key
+	 * @param value
+	 */
+	public synchronized void addValidError(String key,String value,String[] params){
+		ValidErrorEntity map = CXT.getValidErrorMap();
+		map.addValidError(key, value,params);
 	}
 	/**
 	 * 存入一个错误的map中，可以在前台取值
@@ -125,18 +125,16 @@ public abstract class BaseController {
 	 * @param value
 	 */
 	public synchronized void addValidError(String value){
-		String key = "-";
-		Map<String,Set<String>> map = (Map<String, Set<String>>) getRequest().getAttribute(Commons.Key_Valid_Error_Map);
-		if(map == null){
-			map = new Hashtable<String, Set<String>>();
-		}
-		Set<String> sets = map.get(key);
-		if(sets == null){
-			sets = new HashSet<String>();
-		}
-		sets.add(I18N.value(value));
-		map.put(key, sets);
-		getRequest().setAttribute(Commons.Key_Valid_Error_Map, map);
+		addValidError(value,new String[]{});
+	}
+	/**
+	 * 存入一个错误的map中，可以在前台取值
+	 * @param key
+	 * @param value
+	 */
+	public synchronized void addValidError(String value,String[] params){
+		ValidErrorEntity map = CXT.getValidErrorMap();
+		map.addValidError(value);
 	}
 	
 }

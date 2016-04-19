@@ -12,13 +12,18 @@ import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.reflect.MethodSignature;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BeanPropertyBindingResult;
+import org.springframework.validation.FieldError;
+import org.springframework.validation.MapBindingResult;
+import org.springframework.validation.ObjectError;
 import org.springframework.validation.Validator;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.alibaba.fastjson.JSONArray;
-import com.leweiyou.war.utils.CTX;
+import com.leweiyou.war.form.ValidErrorEntity;
+import com.leweiyou.war.utils.CXT;
 import com.leweiyou.war.utils.Commons;
 
 /**
@@ -43,6 +48,7 @@ public class ValidAspect {
 		boolean isJs = method.isAnnotationPresent(ResponseBody.class);
 		String validFunction = valid.validFunction();
 		String errorView = valid.errorView();
+		int parmPosion = valid.parameterPosition();
 		
 		if(StringUtils.isEmpty(validFunction)){
 			String methodName = method.getName();
@@ -54,7 +60,21 @@ public class ValidAspect {
 			errorView = method.getAnnotation(RequestMapping.class).value()[0];
 		}
 		
+		//调用spring的Validation，进行字段的校验
 		Object target = pjp.getTarget();
+		Object obj = args[parmPosion > args.length - 1 ? 0 : parmPosion];
+		BeanPropertyBindingResult br = new BeanPropertyBindingResult(obj,obj.getClass().getName());
+		validator.validate(obj, br);
+		ValidErrorEntity map = CXT.getValidErrorMap();
+		
+		if(br.hasErrors()){
+			for(FieldError error : br.getFieldErrors()){
+				map.addValidError(error.getField(), error.getDefaultMessage());
+			}
+			return setReturn(method,isJs,map,errorView);
+		}
+		
+		//扩展校验，反射进校验方法，继续校验
 		Object isSuccess = true;
 		for(Method m : target.getClass().getDeclaredMethods()){
 			if(validFunction.equals(m.getName())){
@@ -67,26 +87,43 @@ public class ValidAspect {
 		}
 		
 		if(isSuccess instanceof Boolean && !Boolean.parseBoolean(isSuccess + "")){
-			Class returnClass = method.getReturnType();
-			if(isJs || returnClass == null){
-				boolean isError = false;
-				String json = "";
-				Map<String,Set<String>> map = (Map<String, Set<String>>) CTX.getRequest().getAttribute(Commons.Key_Valid_Error_Map);
-				if(map != null && map.size() > 0){
-					isError = true;
-				}
-				json += "," + JSONArray.toJSONString(map);
-				return "{isError:" + isError + json + "}";
-			}else{
-				Object o = returnClass.newInstance();
-				if(o instanceof String){
-					return new String(errorView);
-				}else{
-					return new ModelAndView(errorView);
-				}
-			}
+			return setReturn(method,isJs,map,errorView);
 		}
 		return pjp.proceed();
 	}
 
+	/**
+	 * 根据结果做出不同的返回
+	 * @param method
+	 * @param isJs
+	 * @param map
+	 * @param errorView
+	 * @return
+	 */
+	private Object setReturn(Method method,boolean isJs,ValidErrorEntity map,String errorView){
+		Class returnClass = method.getReturnType();
+		if(isJs || returnClass == null){
+			boolean isError = false;
+			String json = "";
+			if(map.isHaveError()){
+				isError = true;
+			}
+			json += "," + JSONArray.toJSONString(map.all());
+			return "{isError:" + isError + json + "}";
+		}else{
+			Object o = new Object();
+			try {
+				o = returnClass.newInstance();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			if(o instanceof String){
+				return new String(errorView);
+			}else if(o instanceof ModelAndView){
+				return new ModelAndView(errorView);
+			}else{
+				return new String("/common/error");
+			}
+		}
+	}
 }
