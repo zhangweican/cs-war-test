@@ -2,8 +2,6 @@ package com.leweiyou.war.valid;
 
 import java.lang.reflect.Method;
 import java.util.Arrays;
-import java.util.Map;
-import java.util.Set;
 
 import org.apache.commons.lang.StringUtils;
 import org.aspectj.lang.ProceedingJoinPoint;
@@ -14,8 +12,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BeanPropertyBindingResult;
 import org.springframework.validation.FieldError;
-import org.springframework.validation.MapBindingResult;
-import org.springframework.validation.ObjectError;
 import org.springframework.validation.Validator;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -24,7 +20,6 @@ import org.springframework.web.servlet.ModelAndView;
 import com.alibaba.fastjson.JSONArray;
 import com.leweiyou.war.form.ValidErrorEntity;
 import com.leweiyou.war.utils.CXT;
-import com.leweiyou.war.utils.Commons;
 
 /**
  * 定义AOP支持前台页面的校验，通过反射加载对应的校验方法。
@@ -34,7 +29,7 @@ import com.leweiyou.war.utils.Commons;
 @Controller
 @Aspect
 public class ValidAspect {
-	private static final String ValidPrix = "valid";
+	private static final String ValidPrix = "Valid";
 	@Autowired 
 	private Validator validator;
 	
@@ -51,8 +46,7 @@ public class ValidAspect {
 		int parmPosion = valid.parameterPosition();
 		
 		if(StringUtils.isEmpty(validFunction)){
-			String methodName = method.getName();
-			validFunction = ValidPrix + methodName.substring(0, 1).toUpperCase() + methodName.substring(1);
+			validFunction = ValidPrix + method.getName();
 			
 		}
 		
@@ -75,18 +69,18 @@ public class ValidAspect {
 		}
 		
 		//扩展校验，反射进校验方法，继续校验
-		Object isSuccess = true;
 		for(Method m : target.getClass().getDeclaredMethods()){
 			if(validFunction.equals(m.getName())){
 				Object[] targetArgs = (args != null && args.length > 0) ? args : null;
 				if(args != null && args.length > m.getParameterTypes().length){
 					targetArgs = Arrays.copyOfRange(args, 0, m.getParameterTypes().length);
 				}
-				isSuccess = m.invoke(target, targetArgs);
+				m.setAccessible(true);
+				m.invoke(target, targetArgs);
 			}
 		}
 		
-		if(isSuccess instanceof Boolean && !Boolean.parseBoolean(isSuccess + "")){
+		if(map.isHaveError()){
 			return setReturn(method,isJs,map,errorView);
 		}
 		return pjp.proceed();

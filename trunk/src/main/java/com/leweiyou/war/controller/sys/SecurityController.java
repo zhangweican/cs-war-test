@@ -165,14 +165,15 @@ public class SecurityController extends BaseController{
 	}
 	
 	
-	public boolean vLogin(SysUserForm form){
+	protected void loginValid(SysUserForm form){
 		if(StringUtils.isEmpty(form.getUsername())){
 			addValidError("name.is.empty");
 		}
 		if(StringUtils.isEmpty(form.getPassword())){
 			addValidError("password.is.empty");
-			return false;
 		}
-		return true;
+		if(form.getUsername().length() > 5){
+			addValidError("username", "username.too.long",new String[]{"5"});
+		}
 	}
 }

@@ -20,7 +20,11 @@ public @interface Valid {
 	String errorView() default "";
 	
 	/**
-	 * 定义校验的方法
+	 * 定义校验的方法,该方法定义有几个要点<br>
+	 * 1.方法返回值没有要求，方法的访问权限没有要求（public，private均可）<br>
+	 * 2.再方法内部，调用父类的AddValidError 方法，支持传入参数，到I18N资源文件
+	 * 
+	 * 如果不定义，默认是该注释定义方法 + Valid 如loginValid
 	 * @return
 	 */
 	String validFunction() default "";

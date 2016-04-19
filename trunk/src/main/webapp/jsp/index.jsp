@@ -5,9 +5,9 @@
 <h2>Add Book</h2>
 
 <form method="post" action="${cxt}/security/login">
-<fmt:message key="name.label" /><input type="text" name="username" value=""><lwy:validError key="username"/>
+<fmt:message key="name.label" /><input type="text" name="username" value="test1"><lwy:validError key="username"/>
 <br>
-<fmt:message key="password.label" /><input type="text" name="password" value=""><lwy:validError key="password"/>
+<fmt:message key="password.label" /><input type="text" name="password" value="123456"><lwy:validError key="password"/>
 <br>
 <input type="submit" value="Login">
 </form>
