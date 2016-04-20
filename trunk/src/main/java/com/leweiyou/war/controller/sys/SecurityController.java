@@ -5,20 +5,16 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Set;
 
-import org.apache.commons.lang.LocaleUtils;
 import org.apache.commons.lang.StringUtils;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.LocaleResolver;
-import org.springframework.web.servlet.i18n.SessionLocaleResolver;
-import org.springframework.web.servlet.support.RequestContextUtils;
 
+import com.leweiyou.service.entity.SessionUser;
 import com.leweiyou.service.mybatis.entry.sys.SysMenu;
 import com.leweiyou.service.mybatis.entry.sys.SysRoleMenu;
 import com.leweiyou.service.mybatis.entry.sys.SysRoleMenuExample;
@@ -31,11 +27,9 @@ import com.leweiyou.service.service.sys.SysRoleMenuService;
 import com.leweiyou.service.service.sys.SysRoleService;
 import com.leweiyou.service.service.sys.SysUserRoleService;
 import com.leweiyou.service.service.sys.SysUserService;
+import com.leweiyou.service.valid.Valid;
 import com.leweiyou.war.controller.BaseController;
-import com.leweiyou.war.form.SessionUser;
 import com.leweiyou.war.form.SysUserForm;
-import com.leweiyou.war.utils.Commons;
-import com.leweiyou.war.valid.Valid;
 
 @Controller
 @RequestMapping("/security")
@@ -115,9 +109,9 @@ public class SecurityController extends BaseController{
 				if(sums != null){
 					for(SysRoleMenu sum : sums){
 						SysMenu menu = sysMenuService.selectByPrimaryKey(sum.getMenuId());
-						if(Commons.MenuType_tree == menu.getType()){
+						if(com.leweiyou.service.util.Commons.MenuType_tree == menu.getType()){
 							menus.add(menu);
-						}else if(Commons.MenuType_button == menu.getType()){
+						}else if(com.leweiyou.service.util.Commons.MenuType_button == menu.getType()){
 							rights.add(menu);
 						}
 					}
@@ -127,7 +121,7 @@ public class SecurityController extends BaseController{
 		
 		sessionUser.setRightsBySysMenu(rights);
 		sessionUser.setTree(menus);
-		setSessionAttr(Commons.SessionAcount, sessionUser);
+		setSessionAttr(com.leweiyou.service.util.Commons.SessionAcount, sessionUser);
 		
 		return "/security/main";
 	}
@@ -162,7 +156,6 @@ public class SecurityController extends BaseController{
 		}
 		return "redirect:index";
 	}
-	
 	
 	protected void loginValid(SysUserForm form){
 		if(StringUtils.isEmpty(form.getUsername())){

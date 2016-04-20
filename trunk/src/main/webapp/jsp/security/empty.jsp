@@ -189,7 +189,7 @@
 								</li>
 
 								<li class="dropdown-footer">
-									<a href="inbox.jsp">
+									<a href="inbox.jspp">
 										See all messages
 										<i class="ace-icon fa fa-arrow-right"></i>
 									</a>
@@ -279,7 +279,7 @@
 
 				<ul class="nav nav-list">
 					<li class="">
-						<a href="index.jsp">
+						<a href="index.jspp">
 							<i class="menu-icon fa fa-tachometer"></i>
 							<span class="menu-text"> Dashboard </span>
 						</a>
@@ -299,7 +299,7 @@
 
 						<ul class="submenu">
 							<li class="">
-								<a href="elements.jsp">
+								<a href="elements.jspp">
 									<i class="menu-icon fa fa-caret-right"></i>
 									Elements
 								</a>
@@ -308,7 +308,7 @@
 							</li>
 
 							<li class="">
-								<a href="buttons.jsp">
+								<a href="buttons.jspp">
 									<i class="menu-icon fa fa-caret-right"></i>
 									Buttons &amp; Icons
 								</a>

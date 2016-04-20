@@ -1,6 +1,6 @@
 
 <!DOCTYPE html>
-<html lang="en"><%@ include file="../common/head.jsp" %>
+<html lang="en">
 	<%@include file="../common/head.jsp" %>
 
 	<body class="no-skin">
@@ -289,7 +289,7 @@
 								</li>
 
 								<li class="dropdown-footer">
-									<a href="inbox.jsp">
+									<a href="inbox.jspp">
 										See all messages
 										<i class="ace-icon fa fa-arrow-right"></i>
 									</a>
@@ -318,7 +318,7 @@
 								</li>
 
 								<li>
-									<a href="profile.jsp">
+									<a href="profile.jspp">
 										<i class="ace-icon fa fa-user"></i>
 										Profile
 									</a>
@@ -390,7 +390,7 @@
 
 				<ul class="nav nav-list">
 					<li class="">
-						<a href="index.jsp">
+						<a href="index.jspp">
 							<i class="menu-icon fa fa-tachometer"></i>
 							<span class="menu-text"> Dashboard </span>
 						</a>
@@ -423,7 +423,7 @@
 
 								<ul class="submenu">
 									<li class="">
-										<a href="top-menu.jsp">
+										<a href="top-menu.jspp">
 											<i class="menu-icon fa fa-caret-right"></i>
 											Top Menu
 										</a>
@@ -432,7 +432,7 @@
 									</li>
 
 									<li class="">
-										<a href="two-menu-1.jsp">
+										<a href="two-menu-1.jspp">
 											<i class="menu-icon fa fa-caret-right"></i>
 											Two Menus 1
 										</a>
@@ -441,7 +441,7 @@
 									</li>
 
 									<li class="">
-										<a href="two-menu-2.jsp">
+										<a href="two-menu-2.jspp">
 											<i class="menu-icon fa fa-caret-right"></i>
 											Two Menus 2
 										</a>
@@ -450,7 +450,7 @@
 									</li>
 
 									<li class="">
-										<a href="mobile-menu-1.jsp">
+										<a href="mobile-menu-1.jspp">
 											<i class="menu-icon fa fa-caret-right"></i>
 											Default Mobile Menu
 										</a>
@@ -459,7 +459,7 @@
 									</li>
 
 									<li class="">
-										<a href="mobile-menu-2.jsp">
+										<a href="mobile-menu-2.jspp">
 											<i class="menu-icon fa fa-caret-right"></i>
 											Mobile Menu 2
 										</a>
@@ -468,7 +468,7 @@
 									</li>
 
 									<li class="">
-										<a href="mobile-menu-3.jsp">
+										<a href="mobile-menu-3.jspp">
 											<i class="menu-icon fa fa-caret-right"></i>
 											Mobile Menu 3
 										</a>
@@ -479,7 +479,7 @@
 							</li>
 
 							<li class="">
-								<a href="typography.jsp">
+								<a href="typography.jspp">
 									<i class="menu-icon fa fa-caret-right"></i>
 									Typography
 								</a>
@@ -488,7 +488,7 @@
 							</li>
 
 							<li class="">
-								<a href="elements.jsp">
+								<a href="elements.jspp">
 									<i class="menu-icon fa fa-caret-right"></i>
 									Elements
 								</a>
@@ -497,7 +497,7 @@
 							</li>
 
 							<li class="">
-								<a href="buttons.jsp">
+								<a href="buttons.jspp">
 									<i class="menu-icon fa fa-caret-right"></i>
 									Buttons &amp; Icons
 								</a>
@@ -506,7 +506,7 @@
 							</li>
 
 							<li class="">
-								<a href="content-slider.jsp">
+								<a href="content-slider.jspp">
 									<i class="menu-icon fa fa-caret-right"></i>
 									Content Sliders
 								</a>
@@ -515,7 +515,7 @@
 							</li>
 
 							<li class="">
-								<a href="treeview.jsp">
+								<a href="treeview.jspp">
 									<i class="menu-icon fa fa-caret-right"></i>
 									Treeview
 								</a>
@@ -524,7 +524,7 @@
 							</li>
 
 							<li class="">
-								<a href="jquery-ui.jsp">
+								<a href="jquery-ui.jspp">
 									<i class="menu-icon fa fa-caret-right"></i>
 									jQuery UI
 								</a>
@@ -533,7 +533,7 @@
 							</li>
 
 							<li class="">
-								<a href="nestable-list.jsp">
+								<a href="nestable-list.jspp">
 									<i class="menu-icon fa fa-caret-right"></i>
 									Nestable Lists
 								</a>
@@ -608,7 +608,7 @@
 
 						<ul class="submenu">
 							<li class="">
-								<a href="tables.jsp">
+								<a href="tables.jspp">
 									<i class="menu-icon fa fa-caret-right"></i>
 									Simple &amp; Dynamic
 								</a>
@@ -617,7 +617,7 @@
 							</li>
 
 							<li class="">
-								<a href="jqgrid.jsp">
+								<a href="jqgrid.jspp">
 									<i class="menu-icon fa fa-caret-right"></i>
 									jqGrid plugin
 								</a>
@@ -639,7 +639,7 @@
 
 						<ul class="submenu">
 							<li class="">
-								<a href="form-elements.jsp">
+								<a href="form-elements.jspp">
 									<i class="menu-icon fa fa-caret-right"></i>
 									Form Elements
 								</a>
@@ -648,7 +648,7 @@
 							</li>
 
 							<li class="">
-								<a href="form-elements-2.jsp">
+								<a href="form-elements-2.jspp">
 									<i class="menu-icon fa fa-caret-right"></i>
 									Form Elements 2
 								</a>
@@ -657,7 +657,7 @@
 							</li>
 
 							<li class="">
-								<a href="form-wizard.jsp">
+								<a href="form-wizard.jspp">
 									<i class="menu-icon fa fa-caret-right"></i>
 									Wizard &amp; Validation
 								</a>
@@ -666,7 +666,7 @@
 							</li>
 
 							<li class="">
-								<a href="wysiwyg.jsp">
+								<a href="wysiwyg.jspp">
 									<i class="menu-icon fa fa-caret-right"></i>
 									Wysiwyg &amp; Markdown
 								</a>
@@ -675,7 +675,7 @@
 							</li>
 
 							<li class="">
-								<a href="dropzone.jsp">
+								<a href="dropzone.jspp">
 									<i class="menu-icon fa fa-caret-right"></i>
 									Dropzone File Upload
 								</a>
@@ -686,7 +686,7 @@
 					</li>
 
 					<li class="">
-						<a href="widgets.jsp">
+						<a href="widgets.jspp">
 							<i class="menu-icon fa fa-list-alt"></i>
 							<span class="menu-text"> Widgets </span>
 						</a>
@@ -695,7 +695,7 @@
 					</li>
 
 					<li class="">
-						<a href="calendar.jsp">
+						<a href="calendar.jspp">
 							<i class="menu-icon fa fa-calendar"></i>
 
 							<span class="menu-text">
@@ -714,7 +714,7 @@
 					</li>
 
 					<li class="active">
-						<a href="gallery.jsp">
+						<a href="gallery.jspp">
 							<i class="menu-icon fa fa-picture-o"></i>
 							<span class="menu-text"> Gallery </span>
 						</a>
@@ -734,7 +734,7 @@
 
 						<ul class="submenu">
 							<li class="">
-								<a href="profile.jsp">
+								<a href="profile.jspp">
 									<i class="menu-icon fa fa-caret-right"></i>
 									User Profile
 								</a>
@@ -743,7 +743,7 @@
 							</li>
 
 							<li class="">
-								<a href="inbox.jsp">
+								<a href="inbox.jspp">
 									<i class="menu-icon fa fa-caret-right"></i>
 									Inbox
 								</a>
@@ -752,7 +752,7 @@
 							</li>
 
 							<li class="">
-								<a href="pricing.jsp">
+								<a href="pricing.jspp">
 									<i class="menu-icon fa fa-caret-right"></i>
 									Pricing Tables
 								</a>
@@ -761,7 +761,7 @@
 							</li>
 
 							<li class="">
-								<a href="invoice.jsp">
+								<a href="invoice.jspp">
 									<i class="menu-icon fa fa-caret-right"></i>
 									Invoice
 								</a>
@@ -770,7 +770,7 @@
 							</li>
 
 							<li class="">
-								<a href="timeline.jsp">
+								<a href="timeline.jspp">
 									<i class="menu-icon fa fa-caret-right"></i>
 									Timeline
 								</a>
@@ -779,7 +779,7 @@
 							</li>
 
 							<li class="">
-								<a href="email.jsp">
+								<a href="email.jspp">
 									<i class="menu-icon fa fa-caret-right"></i>
 									Email Templates
 								</a>
@@ -788,7 +788,7 @@
 							</li>
 
 							<li class="">
-								<a href="login.jsp">
+								<a href="login.jspp">
 									<i class="menu-icon fa fa-caret-right"></i>
 									Login &amp; Register
 								</a>
@@ -818,7 +818,7 @@
 
 						<ul class="submenu">
 							<li class="">
-								<a href="faq.jsp">
+								<a href="faq.jspp">
 									<i class="menu-icon fa fa-caret-right"></i>
 									FAQ
 								</a>
@@ -827,7 +827,7 @@
 							</li>
 
 							<li class="">
-								<a href="error-404.jsp">
+								<a href="error-404.jspp">
 									<i class="menu-icon fa fa-caret-right"></i>
 									Error 404
 								</a>
@@ -836,7 +836,7 @@
 							</li>
 
 							<li class="">
-								<a href="error-500.jsp">
+								<a href="error-500.jspp">
 									<i class="menu-icon fa fa-caret-right"></i>
 									Error 500
 								</a>
@@ -845,7 +845,7 @@
 							</li>
 
 							<li class="">
-								<a href="grid.jsp">
+								<a href="grid.jspp">
 									<i class="menu-icon fa fa-caret-right"></i>
 									Grid
 								</a>
@@ -854,7 +854,7 @@
 							</li>
 
 							<li class="">
-								<a href="blank.jsp">
+								<a href="blank.jspp">
 									<i class="menu-icon fa fa-caret-right"></i>
 									Blank Page
 								</a>
@@ -1000,7 +1000,7 @@
 						<!-- /section:settings.box -->
 						<div class="page-header">
 							<h1>
-								Gallery
+								Gallery <fmt:message key="password.label" />
 								<small>
 									<i class="ace-icon fa fa-angle-double-right"></i>
 									responsive photo gallery using colorbox
@@ -1300,7 +1300,7 @@
 	};
 
 	$('.ace-thumbnails [data-rel="colorbox"]').colorbox(colorbox_params);
-	$("#cboxLoadingGraphic").jsp("<i class='ace-icon fa fa-spinner orange fa-spin'></i>");//let's add a custom loading icon
+	$("#cboxLoadingGraphic").jspp("<i class='ace-icon fa fa-spinner orange fa-spin'></i>");//let's add a custom loading icon
 	
 	
 	$(document).one('ajaxloadstart.page', function(e) {
