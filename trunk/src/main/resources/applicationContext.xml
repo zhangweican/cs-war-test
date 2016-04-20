@@ -54,7 +54,9 @@
 				/security/logout = logout
 				/**/*.jsp = anon  
 				/**/*.html = anon  
-				/**/*.htm = anon  
+				/**/*.htm = anon 
+				/ = anon 
+				/**/*.jspp = authc 
 				/** = authc,sperm 
 			</value>
 		</property>

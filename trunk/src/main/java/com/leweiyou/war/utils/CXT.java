@@ -5,9 +5,11 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.session.Session;
+import org.springframework.context.ApplicationContext;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
+import com.leweiyou.service.util.SpringContextUtil;
 import com.leweiyou.war.form.ValidErrorEntity;
 
 /**
@@ -51,5 +53,22 @@ public class CXT {
 		}
 		getRequest().setAttribute(Commons.Key_Valid_Error_Map, e);
 		return e;
+	}
+	
+	/**
+	 * 获取Spring的应用上下文
+	 * @return
+	 */
+	public static ApplicationContext getApplicationContext(){
+		return SpringContextUtil.getApplicationContext();
+	}
+	
+	/**
+	 * 通过id获取Bean
+	 * @param id
+	 * @return
+	 */
+	public static Object getBean(String id){
+		return getApplicationContext().getBean(id);
 	}
 }

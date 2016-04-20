@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.log4j.Logger;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.github.pagehelper.Page;
@@ -137,4 +139,13 @@ public abstract class BaseController {
 		map.addValidError(value);
 	}
 	
+	/**
+	 * 间接通过jspp后缀访问jsp页面，并且起到到了登录拦截的效果
+	 */
+	@RequestMapping("/{[a-z-]+}" + Commons.JSPP)
+	public String jspp(){
+		String servletPath = getRequest().getServletPath();
+		//logger.info("Visited JSP: " + servletPath);
+		return servletPath.replace(Commons.JSPP, "");
+	}
 }

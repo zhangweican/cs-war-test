@@ -12,6 +12,11 @@ public class Commons {
 	public static final String Path_JSP = "/jsp";
 
 	/**
+	 * 对一些需要访问jsp的情况，因为直接访问jsp在spring处理时候，不会注入I18N资源文件，所以对jsp的访问，所使用的后缀变成jspp
+	 */
+	public static final String JSPP = ".jspp";
+	
+	/**
 	 * 定义校验失败存入Request的map的兼职
 	 */
 	public static final String Key_Valid_Error_Map = "Valid_Error_Map";

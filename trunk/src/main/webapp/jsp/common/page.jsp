@@ -10,7 +10,7 @@ param.pageName  --  requestScope  page name
  
 eg. : 
 
-<jsp:include page="/common/page.jsp">
+<jsp:include page="/common/page.jspp">
  <jsp:param name="formId"  value="attendentPageForm"/>
  <jsp:param name="pageName"  value="attendentPage"/>
  <jsp:param name="mark"  value="attendentPage"/>
@@ -18,9 +18,9 @@ eg. :
  
 eg.  2:
 页面：
-/oel/WebRoot/zone/oelroom/room-addmember.jsp
+/oel/WebRoot/zone/oelroom/room-addmember.jspp
 链接:
-http://localhost:8080/oel/zone/user/index.jsp  然后 点击”找人“ 
+http://localhost:8080/oel/zone/user/index.jspp  然后 点击”找人“ 
 
  
 --%>

@@ -27,8 +27,14 @@ public class ValidErrorTag extends TagSupport {
 	
 	@Override
 	public int doStartTag() throws JspException {
-		ValidErrorEntity e = CXT.getValidErrorMap();
-		if(e.isHaveError()){
+		ValidErrorEntity e = null ;
+		try {
+			e = CXT.getValidErrorMap();
+		} catch (Exception e2) {
+			//对这里的错误不处理
+		}
+		
+		if(e != null && e.isHaveError()){
 			JspWriter out = pageContext.getOut();
 			StringBuffer sb = new StringBuffer();
 			if(StringUtils.isNotEmpty(key)){

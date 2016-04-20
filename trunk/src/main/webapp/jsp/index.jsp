@@ -2,7 +2,7 @@
 <html>
 	<%@include file="common/head.jsp"%>
 <body>
-<h2>Add Book</h2>
+<h2>主页Index</h2>
 
 <form method="post" action="${cxt}/security/login">
 <fmt:message key="name.label" /><input type="text" name="username" value="test1"><lwy:validError key="username"/>
@@ -22,6 +22,9 @@
 	<lwy:validError key="username"/>
 	${error }
 	
+	<hr>
+	fmt:<fmt:message key="name.label" /><br>
+	spring: <spring:message code="name.label" />
 	
 	
 <fmt:message key="select.locale.label"/>
