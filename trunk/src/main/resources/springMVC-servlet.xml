@@ -15,7 +15,7 @@
     http://www.springframework.org/schema/aop/spring-aop.xsd">
     
     <!-- 注解扫描包 -->
-   	<context:component-scan base-package="com.leweiyou.war.controller"/>
+   	<context:component-scan base-package="com.chinanetcenter.war.itop.controller"/>
    	<aop:aspectj-autoproxy/>
 	
    	<!-- 开启注解 -->
