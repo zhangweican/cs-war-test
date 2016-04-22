@@ -1,9 +1,3 @@
-<<<<<<< HEAD
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<<jsp:forward page="/security/index"></jsp:forward>
+<jsp:forward page="/security/index"></jsp:forward>
 
-=======
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<<jsp:forward page="/security/index"></jsp:forward>
-
->>>>>>> origin/master
