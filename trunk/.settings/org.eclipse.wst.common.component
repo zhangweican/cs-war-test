@@ -1,13 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
-    <wb-module deploy-name="cs-war-test">
+    <wb-module deploy-name="cs-war-itop">
         <wb-resource deploy-path="/" source-path="/target/m2e-wtp/web-resources"/>
         <wb-resource deploy-path="/" source-path="/src/main/webapp" tag="defaultRootSource"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/java"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/resources"/>
-        <dependent-module archiveName="cs-service-1.0.0-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/cs-service/cs-service">
-            <dependency-type>uses</dependency-type>
-        </dependent-module>
-        <property name="java-output-path" value="/cs-war-test/target/classes"/>
-        <property name="context-root" value="cs-war-test"/>
+        <property name="java-output-path" value="/cs-war-itop/target/classes"/>
+        <property name="context-root" value="cs-war-itop"/>
     </wb-module>
 </project-modules>

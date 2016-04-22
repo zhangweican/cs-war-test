@@ -1,4 +1,4 @@
-package com.leweiyou.war.controller;
+package com.chinanetcenter.war.itop.controller;
 
 
 import javax.servlet.http.HttpServletRequest;
@@ -8,13 +8,13 @@ import org.apache.log4j.Logger;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.chinanetcenter.war.itop.utils.Commons;
 import com.github.pagehelper.Page;
 import com.leweiyou.service.entity.ValidErrorEntity;
 import com.leweiyou.service.util.CXT;
 import com.leweiyou.service.util.Utils;
 import com.leweiyou.tools.PageData;
 import com.leweiyou.tools.UuidUtil;
-import com.leweiyou.war.utils.Commons;
 
 /**
  * 父类Controller，

@@ -1,4 +1,4 @@
-package com.leweiyou.war.controller.sys;
+package com.chinanetcenter.war.itop.controller.sys;
 
 import java.util.HashSet;
 import java.util.List;
@@ -14,6 +14,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.LocaleResolver;
 
+import com.chinanetcenter.war.itop.controller.BaseController;
+import com.chinanetcenter.war.itop.form.SysUserForm;
 import com.leweiyou.service.entity.SessionUser;
 import com.leweiyou.service.mybatis.entry.sys.SysMenu;
 import com.leweiyou.service.mybatis.entry.sys.SysRoleMenu;
@@ -28,9 +30,6 @@ import com.leweiyou.service.service.sys.SysRoleService;
 import com.leweiyou.service.service.sys.SysUserRoleService;
 import com.leweiyou.service.service.sys.SysUserService;
 import com.leweiyou.service.valid.Valid;
-import com.leweiyou.war.controller.BaseController;
-import com.leweiyou.war.form.SysUserForm;
-import com.leweiyou.war.utils.Commons;
 
 @Controller
 @RequestMapping("/security")

@@ -1,4 +1,4 @@
-package com.leweiyou.war.utils;
+package com.chinanetcenter.war.itop.utils;
 
 public class Commons {
 	/**

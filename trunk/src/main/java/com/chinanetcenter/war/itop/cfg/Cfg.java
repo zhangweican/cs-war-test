@@ -1,4 +1,4 @@
-package com.leweiyou.war.cfg;
+package com.chinanetcenter.war.itop.cfg;
 
 import com.leweiyou.tools.cfg.CfgData;
 import com.leweiyou.tools.cfg.CfgUtil;
