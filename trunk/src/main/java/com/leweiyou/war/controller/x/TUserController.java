@@ -8,9 +8,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.chinanetcenter.itop.mapper.mybatis.entry.TUserLogin;
+import com.chinanetcenter.itop.mapper.service.TUserLoginService;
 import com.github.pagehelper.PageInfo;
-import com.leweiyou.service.mybatis.entry.x.TUserLogin;
-import com.leweiyou.service.service.x.TUserLoginService;
 import com.leweiyou.war.cfg.Cfg;
 import com.leweiyou.war.controller.BaseController;
 
