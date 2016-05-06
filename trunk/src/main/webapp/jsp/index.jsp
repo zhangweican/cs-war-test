@@ -19,6 +19,11 @@
 <form method="post" action="${cxt}/tUser/list/?test=t">
 <input type="submit" value="List">
 </form>
+
+<form method="post" action="${cxt}/leave/doLeave">
+<input type="submit" value="doLeave">
+</form>
+
 	<lwy:validError key="username"/>
 	${error }
 	
