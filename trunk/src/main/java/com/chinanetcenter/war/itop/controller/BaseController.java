@@ -10,9 +10,11 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.chinanetcenter.war.itop.utils.Commons;
 import com.github.pagehelper.Page;
-import com.leweiyou.service.entity.ValidErrorEntity;
-import com.leweiyou.service.util.CXT;
-import com.leweiyou.service.util.Utils;
+import com.leweiyou.framework.entity.ValidErrorEntity;
+import com.leweiyou.framework.util.CXT;
+import com.leweiyou.framework.util.Utils;
+import com.leweiyou.shiro.entry.SessionUser;
+import com.leweiyou.shiro.shiro.ShiroAuthObject;
 import com.leweiyou.tools.PageData;
 import com.leweiyou.tools.UuidUtil;
 
@@ -83,10 +85,17 @@ public abstract class BaseController {
 	 */
 	public void setSessionAttr(Object key,Object value){
 		//getRequest().setAttribute(key, value);
-		CXT.getSession().setAttribute(key, value);
+		com.leweiyou.shiro.util.CXT.getSession().setAttribute(key, value);
 	} 
 	public Object getSessionAttr(Object key){
-		return CXT.getSession().getAttribute(key);
+		return com.leweiyou.shiro.util.CXT.getSession().getAttribute(key);
+	}
+	
+	public void setSessionUser(SessionUser sessionUser){
+		ShiroAuthObject.setSessionUser(sessionUser);
+	}
+	public SessionUser getSessionUser(){
+		return ShiroAuthObject.getSessionUser();
 	}
 	
 	/**

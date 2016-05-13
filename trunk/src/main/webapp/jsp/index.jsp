@@ -25,7 +25,7 @@
 </form>
 
 	<lwy:validError key="username"/>
-	${error }
+	${msg }
 	
 	<hr>
 	fmt:<fmt:message key="name.label" /><br>

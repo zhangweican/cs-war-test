@@ -2,7 +2,6 @@ package com.chinanetcenter.war.itop.controller.x;
 
 import java.util.Calendar;
 
-import org.apache.shiro.SecurityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,7 +24,6 @@ public class TUserController extends BaseController{
 
 	@RequestMapping("/add")
 	public void add(TUserLogin tUser){
-		SecurityUtils.getSubject().checkPermission("/tUser/add");
 		
 		tUser.setLoginDate(Calendar.getInstance().getTime());
 		
@@ -34,10 +32,8 @@ public class TUserController extends BaseController{
 	
 	@RequestMapping("/list")
 	@ResponseBody
-	
 	public PageInfo<TUserLogin> list(){
 		
-		SecurityUtils.getSubject().checkPermission("/tUser/list");
 		String testName = Cfg.cfg.getString("testName");
 		
 		System.out.println("testName: " + testName);

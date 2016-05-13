@@ -1,7 +1,6 @@
 package com.chinanetcenter.war.itop.controller.sys;
 
 import java.util.HashSet;
-import java.util.List;
 import java.util.Locale;
 import java.util.Set;
 
@@ -16,20 +15,8 @@ import org.springframework.web.servlet.LocaleResolver;
 
 import com.chinanetcenter.war.itop.controller.BaseController;
 import com.chinanetcenter.war.itop.form.SysUserForm;
-import com.leweiyou.service.entity.SessionUser;
-import com.leweiyou.service.mybatis.entry.sys.SysMenu;
-import com.leweiyou.service.mybatis.entry.sys.SysRoleMenu;
-import com.leweiyou.service.mybatis.entry.sys.SysRoleMenuExample;
-import com.leweiyou.service.mybatis.entry.sys.SysUser;
-import com.leweiyou.service.mybatis.entry.sys.SysUserExample;
-import com.leweiyou.service.mybatis.entry.sys.SysUserRole;
-import com.leweiyou.service.mybatis.entry.sys.SysUserRoleExample;
-import com.leweiyou.service.service.sys.SysMenuService;
-import com.leweiyou.service.service.sys.SysRoleMenuService;
-import com.leweiyou.service.service.sys.SysRoleService;
-import com.leweiyou.service.service.sys.SysUserRoleService;
-import com.leweiyou.service.service.sys.SysUserService;
-import com.leweiyou.service.valid.Valid;
+import com.leweiyou.framework.valid.Valid;
+import com.leweiyou.shiro.entry.SessionUser;
 
 @Controller
 @RequestMapping("/security")
@@ -37,17 +24,6 @@ public class SecurityController extends BaseController{
 
 	@Autowired  
     private LocaleResolver localeResolver;
-	
-	@Autowired
-	private SysUserService sysUserService;
-	@Autowired
-	private SysRoleService sysRoleService;
-	@Autowired
-	private SysMenuService sysMenuService;
-	@Autowired
-	private SysUserRoleService sysUserRoleService;
-	@Autowired
-	private SysRoleMenuService sysRoleMenuService;
 	
 	/**
 	 * 用户登录
@@ -59,10 +35,10 @@ public class SecurityController extends BaseController{
 			//使用权限工具进行用户登录，登录成功后跳到shiro配置的successUrl中，与下面的return没什么关系！
 			SecurityUtils.getSubject().login(new UsernamePasswordToken(form.getUsername(), form.getPassword()));
 		} catch (AuthenticationException e) {
-			setSessionAttr("msg", "用户名或密码错误。");
+			setAttr("msg", "用户名或密码错误。");
 			return index();
 		}catch (Exception e) {
-			setSessionAttr("msg", "用户名或密码错误。");
+			setAttr("msg", "用户名或密码错误。");
 			return index();
 		}
 		return main();
@@ -86,7 +62,7 @@ public class SecurityController extends BaseController{
 		
 		//获取用户信息
 		String username = (String) SecurityUtils.getSubject().getPrincipal();
-		SysUserExample example = new SysUserExample();
+/*		SysUserExample example = new SysUserExample();
 		example.createCriteria().andAccountEqualTo(username);
 		SysUser user = sysUserService.selectOne(example);
 		sessionUser.setUserId(user.getUserId());
@@ -120,8 +96,8 @@ public class SecurityController extends BaseController{
 		}
 		
 		sessionUser.setRightsBySysMenu(rights);
-		sessionUser.setTree(menus);
-		setSessionAttr(com.leweiyou.service.util.Commons.SessionAcount, sessionUser);
+		sessionUser.setTree(menus);*/
+		setSessionUser(sessionUser);
 		
 		return "/security/main";
 	}
